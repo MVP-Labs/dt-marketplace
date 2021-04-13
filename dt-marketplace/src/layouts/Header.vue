@@ -6,7 +6,7 @@
     </div>
 
     <div class="right-wrapper">
-      <a-button type="primary" ghost>Data Tracer</a-button>
+      <a-button type="primary" size="large" ghost>Data Tracer</a-button>
     </div>
   </div>
 </template>
@@ -31,7 +31,7 @@
     align-items: center;
     flex: 1;
     img {
-      width: 40px;
+      width: 44px;
     }
 
     .logo-text {

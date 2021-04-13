@@ -7,6 +7,8 @@ import {
   Dropdown,
   Menu,
   Icon,
+  Card,
+  Spin,
 } from "ant-design-vue";
 
 export default (Vue) => {
@@ -15,6 +17,8 @@ export default (Vue) => {
   Vue.use(Dropdown);
   Vue.use(Menu);
   Vue.use(Icon);
+  Vue.use(Card);
+  Vue.use(Spin);
   Vue.prototype.$confirm = Modal.confirm;
   Vue.prototype.$message = message;
   Vue.prototype.$modal = Modal;

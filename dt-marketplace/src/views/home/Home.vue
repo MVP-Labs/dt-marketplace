@@ -14,38 +14,28 @@
 
     <div class="content-wrapper">
       <div class="filters-bar">
-        <a-dropdown>
-          <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
-            All products <a-icon type="down" />
-          </a>
-          <a-menu slot="overlay">
-            <a-menu-item key="All products">All products</a-menu-item>
-            <a-menu-item key="EN">EN</a-menu-item>
-            <a-menu-item key="ES">ES</a-menu-item>
-            <a-menu-item key="RU">RU</a-menu-item>
-            <a-menu-item key="FA">FA</a-menu-item>
-          </a-menu>
-        </a-dropdown>
+        <div class="bar-content">
+          <a-dropdown>
+            <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
+              All products <a-icon type="down" />
+            </a>
+            <a-menu slot="overlay">
+              <a-menu-item key="All products">All Products</a-menu-item>
+              <a-menu-item key="EN">Data Products</a-menu-item>
+              <a-menu-item key="ES">Data Unions</a-menu-item>
+            </a-menu>
+          </a-dropdown>
 
-        <a-dropdown>
-          <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
-            Category <a-icon type="down" />
-          </a>
-          <a-menu slot="overlay">
-            <a-menu-item key="Account">Account</a-menu-item>
-            <a-menu-item key="Settings">Settings</a-menu-item>
-          </a-menu>
-        </a-dropdown>
-
-        <a-dropdown>
-          <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
-            Sort by <a-icon type="down" />
-          </a>
-          <a-menu slot="overlay">
-            <a-menu-item key="Account">Account</a-menu-item>
-            <a-menu-item key="Settings">Settings</a-menu-item>
-          </a-menu>
-        </a-dropdown>
+          <a-dropdown>
+            <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
+              Category <a-icon type="down" />
+            </a>
+            <a-menu slot="overlay">
+              <a-menu-item key="Account">Dataset</a-menu-item>
+              <a-menu-item key="Settings">Computa</a-menu-item>
+            </a-menu>
+          </a-dropdown>
+        </div>
       </div>
 
       <a-spin :spinning="loading" size="large">
@@ -54,7 +44,6 @@
             v-for="item in list"
             :key="item.dt"
             class="card-item"
-            hoverable
             :bordered="false"
             @click="$router.push(`/detail/${item.dt}`)"
           >
@@ -131,18 +120,24 @@ export default {
 
   .content-wrapper {
     .filters-bar {
-      padding: 24px 80px;
-      font-size: 16px;
+      font-size: 17px;
       background: @white;
 
+      .bar-content {
+        width: 1280px;
+        margin: 0 auto;
+        padding: 24px 0;
+      }
+
       .ant-dropdown-trigger {
-        margin-right: 30px;
+        margin-right: 40px;
       }
     }
 
     .card-list {
       min-height: 400px;
-      padding: 20px 80px;
+      width: 1280px;
+      margin: 20px auto;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -150,6 +145,7 @@ export default {
         padding: 0;
       }
       .card-item {
+        cursor: pointer;
         width: 240px;
         margin-bottom: 20px;
         border-radius: 4px;
@@ -191,7 +187,8 @@ export default {
         }
 
         .text-wrapper {
-          padding: 18px;
+          padding: 14px 0;
+          background: @background-color;
           .name {
             font-size: 16px;
             font-weight: bold;
@@ -221,19 +218,5 @@ export default {
 .ant-dropdown-menu-item {
   font-size: 16px;
   padding: 8px 20px;
-}
-
-@media screen and (max-width: 900px) {
-  .home {
-    .content-wrapper {
-      .card-list {
-        .card-item {
-          width: 200px;
-          height: 168px;
-          object-fit: cover;
-        }
-      }
-    }
-  }
 }
 </style>

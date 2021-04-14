@@ -12,7 +12,9 @@
             </div>
 
             <div class="desc-item">
-              <div class="label">Sold by {{ dt_info.issuer }} issuer</div>
+              <div class="label">
+                Sold by <a>{{ dt_info.issuer }}</a>
+              </div>
             </div>
           </div>
         </div>
@@ -152,25 +154,26 @@ Only on the Streamr marketplace, this exclusive edition of DPP DataStreams offer
     border-bottom: 1px solid @border-color;
     padding-bottom: 40px;
     .fig {
-      width: 440px;
+      width: 480px;
       height: 300px;
       object-fit: cover;
       border-radius: 8px;
     }
 
     .right-info {
-      margin-left: 60px;
+      margin-left: 100px;
       flex: 1;
       .name {
         font-size: 32px;
         font-weight: bold;
         margin-bottom: 12px;
+        padding-left: 12px;
       }
 
       .desc-item {
         display: flex;
         border-bottom: 1px solid @border-color;
-        padding: 18px 0;
+        padding: 18px 12px;
         .label {
           width: 180px;
           font-size: 16px;
@@ -199,17 +202,17 @@ Only on the Streamr marketplace, this exclusive edition of DPP DataStreams offer
     .type-wrapper {
       width: 272px;
       background: @background-color;
-      padding: 20px;
+      padding: 32px 24px;
       border-radius: 8px;
 
       .label {
         font-size: 18px;
-        margin-bottom: 4px;
+        margin-bottom: 20px;
       }
 
       .value {
         color: rgb(82, 82, 82);
-        font-size: 15px;
+        font-size: 16px;
       }
     }
   }

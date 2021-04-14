@@ -134,10 +134,12 @@ def tracer_search_by_dt():
             return jsonify(error="Error"), 400
 
         paths = tracer_service.trace_dt_lifecycle([{"dt": dt}])
+        job_list_data = tracer_service.job_list_format(paths)
+
         tree = tracer_service.tree_format(paths)
         lifecycle_data = tracer_service.tree_to_json(tree)
 
-        return jsonify(lifecycle=lifecycle_data, result="Success"), 200
+        return jsonify(job_list=job_list_data, lifecycle=lifecycle_data, result="Success"), 200
     except Exception as e:
         logging.error(f'Exception when granting permission: {e}')
         return jsonify(error="Error"), 400

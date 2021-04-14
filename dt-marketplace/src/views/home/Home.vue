@@ -140,7 +140,6 @@ export default {
       margin: 20px auto;
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
       /deep/.ant-card-body {
         padding: 0;
       }
@@ -148,9 +147,13 @@ export default {
         cursor: pointer;
         width: 240px;
         margin-bottom: 20px;
+        margin-right: 20px;
         border-radius: 4px;
         overflow: hidden;
         position: relative;
+        &:nth-child(5n) {
+          margin-right: 0;
+        }
 
         .img-wrapper {
           width: 240px;
@@ -225,12 +228,22 @@ export default {
     .content-wrapper {
       .filters-bar {
         .bar-content {
-          width: 1040px;
+          width: 240px * 4 + 60px;
         }
       }
 
       .card-list {
-        width: 1040px;
+        width: 240px * 4 + 60px;
+
+        .card-item {
+          &:nth-child(5n) {
+            margin-right: 20px;
+          }
+
+          &:nth-child(4n) {
+            margin-right: 0px;
+          }
+        }
       }
     }
   }

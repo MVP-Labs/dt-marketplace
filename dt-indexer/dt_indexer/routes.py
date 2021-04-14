@@ -133,11 +133,14 @@ def tracer_search_by_dt():
             logging.error(f'A datatoken must be provided {e}')
             return jsonify(error="Error"), 400
 
-        paths = tracer_service.trace_dt_lifecycle([{"dt": dt}])
+        paths = tracer_service.trace_dt_lifecycle(dt, prefix=[])
         job_list_data = tracer_service.job_list_format(paths)
 
         tree = tracer_service.tree_format(paths)
-        lifecycle_data = tracer_service.tree_to_json(tree)
+
+        lifecycle_data = None
+        if tree:
+            lifecycle_data = tracer_service.tree_to_json(tree)
 
         return jsonify(job_list=job_list_data, lifecycle=lifecycle_data, result="Success"), 200
     except Exception as e:

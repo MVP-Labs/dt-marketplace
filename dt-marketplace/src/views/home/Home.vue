@@ -5,7 +5,7 @@
         A marketplace for trusted data and computing services
       </div>
       <a-input-search
-        style="width: 460px"
+        style="width: 440px"
         placeholder="Search the marketplace for"
         enter-button="Search"
         size="large"
@@ -14,57 +14,53 @@
 
     <div class="content-wrapper">
       <div class="filters-bar">
-        <a-dropdown>
-          <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
-            All products <a-icon type="down" />
-          </a>
-          <a-menu slot="overlay">
-            <a-menu-item key="All products">All products</a-menu-item>
-            <a-menu-item key="EN">EN</a-menu-item>
-            <a-menu-item key="ES">ES</a-menu-item>
-            <a-menu-item key="RU">RU</a-menu-item>
-            <a-menu-item key="FA">FA</a-menu-item>
-          </a-menu>
-        </a-dropdown>
+        <div class="bar-content">
+          <a-dropdown>
+            <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
+              All products <a-icon type="down" />
+            </a>
+            <a-menu slot="overlay">
+              <a-menu-item key="All products">All Products</a-menu-item>
+              <a-menu-item key="EN">Data Products</a-menu-item>
+              <a-menu-item key="ES">Data Unions</a-menu-item>
+            </a-menu>
+          </a-dropdown>
 
-        <a-dropdown>
-          <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
-            Category <a-icon type="down" />
-          </a>
-          <a-menu slot="overlay">
-            <a-menu-item key="Account">Account</a-menu-item>
-            <a-menu-item key="Settings">Settings</a-menu-item>
-          </a-menu>
-        </a-dropdown>
-
-        <a-dropdown>
-          <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
-            Sort by <a-icon type="down" />
-          </a>
-          <a-menu slot="overlay">
-            <a-menu-item key="Account">Account</a-menu-item>
-            <a-menu-item key="Settings">Settings</a-menu-item>
-          </a-menu>
-        </a-dropdown>
+          <a-dropdown>
+            <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
+              Category <a-icon type="down" />
+            </a>
+            <a-menu slot="overlay">
+              <a-menu-item key="Account">Dataset</a-menu-item>
+              <a-menu-item key="Settings">Computa</a-menu-item>
+            </a-menu>
+          </a-dropdown>
+        </div>
       </div>
 
-      <a-spin :spinning="loading">
+      <a-spin :spinning="loading" size="large">
         <div class="card-list">
           <a-card
             v-for="item in list"
-            :key="item.name"
+            :key="item.dt"
             class="card-item"
-            hoverable
             :bordered="false"
-            @click="$router.push(`/detail/${item.id}`)"
+            @click="$router.push(`/detail/${item.dt}`)"
           >
-            <img :src="item.source" />
+            <div class="img-wrapper">
+              <div class="dot" v-if="item.union_or_not">Data Union</div>
+              <img :src="item.fig" />
+            </div>
 
             <div class="text-wrapper">
               <div class="name">{{ item.name }}</div>
-              <div class="desc">{{ item.desc }}</div>
+              <div class="desc">{{ item.issuer }}</div>
             </div>
           </a-card>
+        </div>
+
+        <div class="view-more">
+          <a-button size="large" shape="round">VIEW MORE</a-button>
         </div>
       </a-spin>
     </div>
@@ -72,75 +68,39 @@
 </template>
 
 <script>
+import { getDtList } from "../../api/index";
+
+const images = [
+  "https://streamr-public.s3.amazonaws.com/product-images/i6kPwX43SVCHn4suXM1GJw3QzcxmTQQ-Oz_B4lqd3cAg.png",
+  "https://streamr-public.s3.amazonaws.com/product-images/u5Kx9nEcRR6whI3NLjo0MAQnZyn3_fRzy6WIp9ZA73dA.png",
+  "https://streamr-public.s3.amazonaws.com/product-images/Ir_tSV2SRtGLXdO1TnCwHQW6Y2ZM9gSa-1FYB4zWgBXg.jpg",
+  "https://streamr-public.s3.amazonaws.com/product-images/lYdrpZamTTiy_emLw93viwFxM6_nLkQwGokzsObLRoBA.png",
+  "https://streamr-public.s3.amazonaws.com/product-images/UmGwaEAyQtqnEpmncigp1gHWfjZMTDQoiS7M6f0qxAvg.png",
+];
+
 export default {
+  name: "home",
   data() {
     return {
       loading: true,
       list: [],
     };
   },
-  mounted() {
-    setTimeout(() => {
+  methods: {
+    async getDtList() {
+      this.loading = true;
+      const res = await getDtList();
+
+      this.list = res.dt_list.map((item, index) => {
+        item.fig = images[index % 5];
+        return item;
+      });
+
       this.loading = false;
-      this.list = [
-        {
-          name: "Swash",
-          desc: "SwashData Tech Oy",
-          is_union: false,
-          id:
-            "6be8ceda7a3c4fe7991eab501975b85ec2bb90452d0e4c93bc252937476eae75",
-          source:
-            "https://streamr-public.s3.amazonaws.com/product-images/u5Kx9nEcRR6whI3NLjo0MAQnZyn3_fRzy6WIp9ZA73dA.png",
-        },
-
-        {
-          name: "Swash",
-          desc: "SwashData Tech Oy",
-          is_union: false,
-          id:
-            "6be8ceda7a3c4fe7991eab501975b85ec2bb90452d0e4c93bc252937476eae75",
-          source:
-            "https://streamr-public.s3.amazonaws.com/product-images/Ir_tSV2SRtGLXdO1TnCwHQW6Y2ZM9gSa-1FYB4zWgBXg.jpg",
-        },
-
-        {
-          name: "Swash",
-          desc: "SwashData Tech Oy",
-          is_union: false,
-          id:
-            "6be8ceda7a3c4fe7991eab501975b85ec2bb90452d0e4c93bc252937476eae75",
-          source:
-            "https://streamr-public.s3.amazonaws.com/product-images/lYdrpZamTTiy_emLw93viwFxM6_nLkQwGokzsObLRoBA.png",
-        },
-        {
-          name: "Swash",
-          desc: "SwashData Tech Oy",
-          is_union: false,
-          id:
-            "6be8ceda7a3c4fe7991eab501975b85ec2bb90452d0e4c93bc252937476eae75",
-          source:
-            "https://streamr-public.s3.amazonaws.com/product-images/Ir_tSV2SRtGLXdO1TnCwHQW6Y2ZM9gSa-1FYB4zWgBXg.jpg",
-        },
-        {
-          name: "Swash",
-          desc: "SwashData Tech Oy",
-          is_union: false,
-          id:
-            "6be8ceda7a3c4fe7991eab501975b85ec2bb90452d0e4c93bc252937476eae75",
-          source:
-            "https://streamr-public.s3.amazonaws.com/product-images/KQ1Bj0sQQWC_dfCjkUGsEA_WBsGnFxQI6SvEd6RI4DOw.png",
-        },
-        {
-          name: "Swash",
-          desc: "SwashData Tech Oy",
-          id:
-            "6be8ceda7a3c4fe7991eab501975b85ec2bb90452d0e4c93bc252937476eae75",
-          is_union: false,
-          source:
-            "https://streamr-public.s3.amazonaws.com/product-images/Ir_tSV2SRtGLXdO1TnCwHQW6Y2ZM9gSa-1FYB4zWgBXg.jpg",
-        },
-      ];
-    }, 2000);
+    },
+  },
+  async mounted() {
+    this.getDtList();
   },
 };
 </script>
@@ -160,18 +120,24 @@ export default {
 
   .content-wrapper {
     .filters-bar {
-      padding: 20px 80px;
-      font-size: 16px;
+      font-size: 17px;
       background: @white;
 
+      .bar-content {
+        width: 1280px;
+        margin: 0 auto;
+        padding: 24px 0;
+      }
+
       .ant-dropdown-trigger {
-        margin-right: 30px;
+        margin-right: 40px;
       }
     }
 
     .card-list {
       min-height: 400px;
-      padding: 20px 80px;
+      width: 1280px;
+      margin: 20px auto;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -179,20 +145,56 @@ export default {
         padding: 0;
       }
       .card-item {
+        cursor: pointer;
         width: 240px;
         margin-bottom: 20px;
-        img {
-          width: 100%;
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+
+        .img-wrapper {
+          width: 240px;
+          height: 160px;
+          position: relative;
+          &:hover {
+            &:after {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: rgba(0, 0, 0, 0.4);
+              content: "";
+              transition: all 0.3s;
+            }
+          }
+          img {
+            width: 240px;
+            height: 160px;
+            object-fit: cover;
+          }
+        }
+
+        .dot {
+          position: absolute;
+          top: 0;
+          left: 0;
+          background: @primary-color;
+          color: @white;
+          border-bottom-right-radius: 8px;
+          font-size: 13px;
+          padding: 3px 5px;
         }
 
         .text-wrapper {
-          padding: 16px;
+          padding: 14px 0;
+          background: @background-color;
           .name {
             font-size: 16px;
+            font-weight: bold;
           }
 
           .desc {
-            font-size: 13px;
             color: @text-color-2;
             margin-top: 4px;
           }
@@ -200,10 +202,37 @@ export default {
       }
     }
   }
+
+  .view-more {
+    text-align: center;
+
+    .ant-btn-round.ant-btn-lg {
+      font-size: 14px;
+      color: #323232;
+      background: rgba(239, 239, 239, 0.9);
+      border-color: rgba(239, 239, 239, 0.9);
+    }
+  }
 }
 
 .ant-dropdown-menu-item {
   font-size: 16px;
   padding: 8px 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  .home {
+    .content-wrapper {
+      .filters-bar {
+        .bar-content {
+          width: 1040px;
+        }
+      }
+
+      .card-list {
+        width: 1040px;
+      }
+    }
+  }
 }
 </style>

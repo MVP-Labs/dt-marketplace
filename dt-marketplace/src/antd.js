@@ -9,6 +9,7 @@ import {
   Icon,
   Card,
   Spin,
+  Table,
 } from "ant-design-vue";
 
 export default (Vue) => {
@@ -19,6 +20,8 @@ export default (Vue) => {
   Vue.use(Icon);
   Vue.use(Card);
   Vue.use(Spin);
+  Vue.use(Table);
+  Vue.use(Modal);
   Vue.prototype.$confirm = Modal.confirm;
   Vue.prototype.$message = message;
   Vue.prototype.$modal = Modal;

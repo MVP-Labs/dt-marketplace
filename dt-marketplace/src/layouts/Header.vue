@@ -1,12 +1,12 @@
 <template>
   <div class="layout-header">
-    <div class="logo-wrapper">
+    <div class="logo-wrapper" @click="$router.push('/')">
       <img src="../assets/logo.png" />
       <div class="logo-text">DataToken</div>
     </div>
 
     <div class="right-wrapper">
-      <a-button type="primary" size="large" ghost>Data Tracer</a-button>
+      <a-button type="primary" ghost>DataTracer</a-button>
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@
   .logo-wrapper {
     display: flex;
     align-items: center;
+    cursor: pointer;
     flex: 1;
     img {
       width: 44px;

@@ -3,7 +3,9 @@
     <Header />
 
     <main class="layout-content">
-      <router-view class="router-view"></router-view>
+      <keep-alive :include="['home']">
+        <router-view class="router-view"></router-view>
+      </keep-alive>
     </main>
 
     <Footer />

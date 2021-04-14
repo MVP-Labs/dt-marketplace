@@ -8,22 +8,21 @@
             <div class="name">{{ dt_info.name }}</div>
 
             <div class="desc-item">
-              <div class="label">Type</div>
-              <div class="value">{{ dt_info.type }}</div>
-            </div>
-
-            <div class="desc-item">
               <a class="label" @click="copy(dt_info.owner)">Owner</a>
             </div>
 
             <div class="desc-item">
-              <div class="label">Issuer</div>
-              <div class="value">{{ dt_info.issuer }}</div>
+              <div class="label">Sold by {{ dt_info.issuer }} issuer</div>
             </div>
-            <div class="desc-item">
-              <div class="label">Decription</div>
-              <div class="value">{{ dt_info.desc }}</div>
-            </div>
+          </div>
+        </div>
+
+        <div class="detail-desc">
+          <div class="desc-wrapper" v-html="dt_info.desc"></div>
+
+          <div class="type-wrapper">
+            <div class="label">Asset type</div>
+            <div class="value">{{ dt_info.type }}</div>
           </div>
         </div>
 
@@ -35,10 +34,10 @@
           >
             <div slot="action">
               <a-button color="rgba(119,131,143,.1)" @click="show = true">
-                View constrains
+                Constrains
               </a-button>
 
-              <a-button style="margin-left: 12px" shape="circle" icon="plus" />
+              <a-button style="margin-left: 20px" shape="circle" icon="plus" />
             </div>
           </a-table>
         </div>
@@ -51,7 +50,7 @@
       on-ok="handleOk"
       :footer="null"
       :centered="true"
-      width="840px"
+      width="880px"
     >
       <pre id="result" v-html="json"></pre>
     </a-modal>
@@ -64,25 +63,33 @@ import { syntaxHighlight } from "../../utils";
 
 const columns = [
   {
-    title: "SID",
+    title: "SERVICE",
     dataIndex: "sid",
     key: "sid",
+    width: 100,
+    align: "center",
   },
   {
     title: "OPERATOR",
     dataIndex: "op",
     key: "op",
+    width: 100,
+    align: "center",
   },
   {
     title: "PRICE",
     dataIndex: "price",
     key: "price",
+    width: 100,
+    align: "center",
   },
   {
     title: "ACTION",
     dataIndex: "action",
     key: "action",
     scopedSlots: { customRender: "action" },
+    width: 100,
+    align: "center",
   },
 ];
 
@@ -112,6 +119,8 @@ export default {
       const res = await getDtDetail(this.$route.params.dt);
       this.loading = false;
       this.dt_info = res.dt_info;
+      this.dt_info.desc = `Digital Assets Power Play Ltd. is the leading provider of algorithmic trading tools, services and software.<br />
+Only on the Streamr marketplace, this exclusive edition of DPP DataStreams offers access to a variety of live crypto data from five leading exchanges including Bitstamp, Coinbase Pro, Kraken, Bitmex, and Tokens. Connect to real-time trades, L1/L2 order books, OHLCV, technical indicators, indices, and news & sentiment feeds. Analyzing the crypto market, finding correlations, and discovering trading opportunities has never been easier.`;
       this.dt_info.fig =
         "https://streamr-public.s3.amazonaws.com/product-images/Ir_tSV2SRtGLXdO1TnCwHQW6Y2ZM9gSa-1FYB4zWgBXg.jpg";
       this.service_lists = res.service_lists.map((item) => {
@@ -139,19 +148,22 @@ export default {
   .detail-info {
     display: flex;
     align-items: center;
+    border-bottom: 1px solid @border-color;
+    padding-bottom: 40px;
     .fig {
       width: 440px;
+      height: 300px;
+      object-fit: cover;
       border-radius: 8px;
     }
 
     .right-info {
-      margin-left: 40px;
+      margin-left: 60px;
       flex: 1;
       .name {
-        font-size: 28px;
+        font-size: 32px;
         font-weight: bold;
-        text-align: center;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
 
       .desc-item {
@@ -160,7 +172,6 @@ export default {
         padding: 18px 0;
         .label {
           width: 180px;
-          text-align: center;
           font-size: 16px;
         }
 
@@ -169,6 +180,35 @@ export default {
           color: rgba(0, 0, 0, 0.65);
           font-size: 15px;
         }
+      }
+    }
+  }
+
+  .detail-desc {
+    margin-top: 40px;
+    display: flex;
+
+    .desc-wrapper {
+      flex: 1;
+      margin-right: 140px;
+      font-size: 16px;
+      color: rgb(82, 82, 82);
+    }
+
+    .type-wrapper {
+      width: 272px;
+      background: @background-color;
+      padding: 20px;
+      border-radius: 8px;
+
+      .label {
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+
+      .value {
+        color: rgb(82, 82, 82);
+        font-size: 15px;
       }
     }
   }

@@ -1,15 +1,15 @@
 <template>
   <div class="layout-footer">
-    <div class="list">
+    <!-- <div class="list">
       <div class="section" v-for="section in list" :key="section.title">
         <div class="title">{{ section.title }}</div>
         <div class="item" v-for="item in section.children" :key="item.text">
           {{ item.text }}
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="copyright">
-      ©️ 2021 All Rights Reserved. Powered by <a href="#">DataToken Market</a>
+      ©️ 2021 All Rights Reserved. Powered by <a href="#">Ownership Labs</a>
     </div>
   </div>
 </template>

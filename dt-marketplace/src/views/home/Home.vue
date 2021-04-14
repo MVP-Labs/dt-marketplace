@@ -58,8 +58,10 @@
             :bordered="false"
             @click="$router.push(`/detail/${item.dt}`)"
           >
-            <div class="dot" v-if="item.union_or_not">Data Union</div>
-            <img :src="item.fig" />
+            <div class="img-wrapper">
+              <div class="dot" v-if="item.union_or_not">Data Union</div>
+              <img :src="item.fig" />
+            </div>
 
             <div class="text-wrapper">
               <div class="name">{{ item.name }}</div>
@@ -80,10 +82,11 @@
 import { getDtList } from "../../api/index";
 
 const images = [
+  "https://streamr-public.s3.amazonaws.com/product-images/i6kPwX43SVCHn4suXM1GJw3QzcxmTQQ-Oz_B4lqd3cAg.png",
   "https://streamr-public.s3.amazonaws.com/product-images/u5Kx9nEcRR6whI3NLjo0MAQnZyn3_fRzy6WIp9ZA73dA.png",
   "https://streamr-public.s3.amazonaws.com/product-images/Ir_tSV2SRtGLXdO1TnCwHQW6Y2ZM9gSa-1FYB4zWgBXg.jpg",
   "https://streamr-public.s3.amazonaws.com/product-images/lYdrpZamTTiy_emLw93viwFxM6_nLkQwGokzsObLRoBA.png",
-  "https://streamr-public.s3.amazonaws.com/product-images/KQ1Bj0sQQWC_dfCjkUGsEA_WBsGnFxQI6SvEd6RI4DOw.png",
+  "https://streamr-public.s3.amazonaws.com/product-images/UmGwaEAyQtqnEpmncigp1gHWfjZMTDQoiS7M6f0qxAvg.png",
 ];
 
 export default {
@@ -100,7 +103,7 @@ export default {
       const res = await getDtList();
 
       this.list = res.dt_list.map((item, index) => {
-        item.fig = images[index % 4];
+        item.fig = images[index % 5];
         return item;
       });
 
@@ -120,7 +123,7 @@ export default {
     padding: 40px;
 
     .title {
-      font-size: 18px;
+      font-size: 19px;
       margin-bottom: 20px;
       color: rgb(114, 114, 114);
     }
@@ -152,8 +155,28 @@ export default {
         border-radius: 4px;
         overflow: hidden;
         position: relative;
-        img {
-          width: 100%;
+
+        .img-wrapper {
+          width: 240px;
+          height: 160px;
+          position: relative;
+          &:hover {
+            &:after {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: rgba(0, 0, 0, 0.4);
+              content: "";
+              transition: all 0.3s;
+            }
+          }
+          img {
+            width: 240px;
+            height: 160px;
+            object-fit: cover;
+          }
         }
 
         .dot {
@@ -206,6 +229,8 @@ export default {
       .card-list {
         .card-item {
           width: 200px;
+          height: 168px;
+          object-fit: cover;
         }
       }
     }

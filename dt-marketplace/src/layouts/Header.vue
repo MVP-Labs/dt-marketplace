@@ -6,7 +6,7 @@
     </div>
 
     <div class="right-wrapper">
-      <a-button type="primary" ghost>Data Tracer</a-button>
+      <a-button type="primary" ghost>DataTracer</a-button>
     </div>
   </div>
 </template>

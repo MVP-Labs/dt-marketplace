@@ -91,7 +91,13 @@ def get_dt_details():
             logging.error(f'A datatoken must be provided {e}')
             return jsonify(error="Error"), 400
 
-        dt_info, service_lists, union_data = asset_service.get_dt_details(dt)
+        details = asset_service.get_dt_details(dt)
+
+        if not details:
+            logging.error(f'Do not find results for this dt {e}')
+            return jsonify(error="Error"), 400
+
+        dt_info, service_lists, union_data = details
 
         return jsonify(dt_info=dt_info, service_lists=service_lists,
                        union_data=union_data, result="Success"), 200
@@ -127,11 +133,11 @@ def tracer_search_by_dt():
             logging.error(f'A datatoken must be provided {e}')
             return jsonify(error="Error"), 400
 
-        paths = tracer_service.trace_dt_lifecycle([dt])
+        paths = tracer_service.trace_dt_lifecycle([{"dt": dt}])
         tree = tracer_service.tree_format(paths)
-        tracer_service.tracer_print(tree)
+        lifecycle_data = tracer_service.tree_to_json(tree)
 
-        return jsonify(tree=tree, result="Success"), 200
+        return jsonify(lifecycle=lifecycle_data, result="Success"), 200
     except Exception as e:
         logging.error(f'Exception when granting permission: {e}')
         return jsonify(error="Error"), 400

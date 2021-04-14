@@ -127,6 +127,7 @@ Only on the Streamr marketplace, this exclusive edition of DPP DataStreams offer
         this.json = syntaxHighlight(
           JSON.parse(JSON.stringify(item.constrains))
         );
+        item.op = item.op || "N/A";
         return item;
       });
       this.union_data = res.union_data;

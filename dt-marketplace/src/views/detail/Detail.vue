@@ -121,8 +121,7 @@ export default {
       const res = await getDtDetail(this.$route.params.dt);
       this.loading = false;
       this.dt_info = res.dt_info;
-      this.dt_info.desc = `Digital Assets Power Play Ltd. is the leading provider of algorithmic trading tools, services and software.<br />
-Only on the Streamr marketplace, this exclusive edition of DPP DataStreams offers access to a variety of live crypto data from five leading exchanges including Bitstamp, Coinbase Pro, Kraken, Bitmex, and Tokens. Connect to real-time trades, L1/L2 order books, OHLCV, technical indicators, indices, and news & sentiment feeds. Analyzing the crypto market, finding correlations, and discovering trading opportunities has never been easier.`;
+
       this.dt_info.fig =
         "https://streamr-public.s3.amazonaws.com/product-images/Ir_tSV2SRtGLXdO1TnCwHQW6Y2ZM9gSa-1FYB4zWgBXg.jpg";
       this.service_lists = res.service_lists.map((item) => {

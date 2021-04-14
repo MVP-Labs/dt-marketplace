@@ -219,4 +219,20 @@ export default {
   font-size: 16px;
   padding: 8px 20px;
 }
+
+@media screen and (max-width: 1200px) {
+  .home {
+    .content-wrapper {
+      .filters-bar {
+        .bar-content {
+          width: 1040px;
+        }
+      }
+
+      .card-list {
+        width: 1040px;
+      }
+    }
+  }
+}
 </style>

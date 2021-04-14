@@ -6,6 +6,10 @@ function resolve(dir) {
 }
 
 module.exports = {
+  publicPath:
+    process.env.NODE_ENV === "production"
+      ? "https://zszhuan-dev.oss-cn-hangzhou.aliyuncs.com/web/dt-marketplace/"
+      : "/",
   css: {
     loaderOptions: {
       less: {

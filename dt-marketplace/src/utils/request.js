@@ -1,13 +1,12 @@
 import axios from "axios";
 import Vue from "vue";
-import { getToken, clearToken } from "./auth";
 
-const CODE_OK = 0;
+const CODE_OK = "Success";
 let loadCount = 0; // 当前请求 loading 的数量
 
 const request = axios.create({
-  timeout: 10000,
-  baseURL: process.env.apiUrl,
+  timeout: 30000,
+  baseURL: "http://128.14.226.29:3000",
   _cache: false, // 接口缓存
   _loading: false, // 是否显示 loading
   _toast: true, // 报错后是否显示 toast
@@ -29,10 +28,6 @@ const loading = {
 
 request.interceptors.request.use(
   (config) => {
-    if (getToken()) {
-      config.headers["Authorization"] = `Bearer ${getToken()}`;
-    }
-
     if (config._loading && ++loadCount > 0) {
       loading.open();
     }
@@ -53,7 +48,7 @@ request.interceptors.response.use(
     }
 
     // success
-    if (data.errCode === CODE_OK) {
+    if (data.result === CODE_OK) {
       return data;
     } else {
       console.log(config);
@@ -61,15 +56,6 @@ request.interceptors.response.use(
         Vue.prototype.$message.error({
           content: data.errMsg || "当前服务器繁忙，稍后再试哦~",
         });
-
-      if (data.errCode === 401) {
-        clearToken();
-
-        setTimeout(() => {
-          location.reload();
-        }, 1000);
-        return;
-      }
     }
 
     return Promise.reject(data);

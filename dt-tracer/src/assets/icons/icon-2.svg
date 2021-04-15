@@ -1,0 +1,62 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.04 120.436">
+  <defs>
+    <style>
+      .cls-1, .cls-5, .cls-6 {
+        fill: none;
+      }
+
+      .cls-1, .cls-5 {
+        stroke: #bdc5d1;
+      }
+
+      .cls-1 {
+        stroke-width: 2px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #3498db;
+      }
+
+      .cls-2 {
+        opacity: 0.5;
+      }
+
+      .cls-4 {
+        opacity: 0.75;
+      }
+
+      .cls-5, .cls-6 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .cls-6 {
+        stroke: #3498db;
+      }
+    </style>
+  </defs>
+  <g id="ethereum-2" transform="translate(42.337 21.394)">
+    <g id="ether-icon" transform="translate(-16.998 -7.807)">
+      <path id="Path_3" data-name="Path 3" class="cls-1" d="M125.78,0l-.614,2.2V65.98l.614.645,28.128-17.5Z" transform="translate(-97.652)"/>
+      <path id="Path_4" data-name="Path 4" class="cls-1" d="M28.128,0,0,49.125l28.128,17.5Z"/>
+      <path id="Path_5" data-name="Path 5" class="cls-1" d="M126.732,254.079l-.346.445v22.721l.346,1.064,28.144-41.721Z" transform="translate(-98.604 -181.847)"/>
+      <path id="Path_6" data-name="Path 6" class="cls-1" d="M28.128,278.306V254.077L0,236.585Z" transform="translate(0 -181.846)"/>
+      <path id="Path_7" data-name="Path 7" class="cls-2" d="M127.961,185.117l28.128-17.5L127.961,154.16Z" transform="translate(-99.833 -118.49)"/>
+      <path id="Path_8" data-name="Path 8" class="cls-3" d="M0,167.615l28.128,17.5V154.158Z" transform="translate(0 -118.49)"/>
+    </g>
+    <g id="shapes" transform="translate(-46.788 -19.557)">
+      <g id="Group_1" data-name="Group 1" class="cls-4" transform="matrix(-0.974, 0.225, -0.225, -0.974, 111.535, 112.178)">
+        <path id="Path_5-2" data-name="Path 5" class="cls-5" d="M0,10.5A65.347,65.347,0,0,1,8.018,3.22C9.343,2.2,10.973,1.055,12.652-.005" transform="translate(7.855 -0.003)"/>
+        <path id="Path_6-2" data-name="Path 6" class="cls-5" d="M0,4.235C.8,2.79,1.7,1.343,2.592,0" transform="translate(-0.007 17.127)"/>
+      </g>
+      <g id="Group_3" data-name="Group 3" transform="translate(0 10.184) rotate(-15)">
+        <path id="Path_4-2" data-name="Path 4" class="cls-6" d="M0,1.618A65.677,65.677,0,0,1,6.394,0" transform="translate(32.881 -0.016)"/>
+        <path id="Path_5-3" data-name="Path 5" class="cls-6" d="M-.005,10.514a65.672,65.672,0,0,1,8.04-7.29C9.363,2.2,11,1.056,12.679-.006" transform="translate(7.874 7.203)"/>
+        <path id="Path_6-3" data-name="Path 6" class="cls-6" d="M0,4.236C.8,2.79,1.7,1.343,2.6,0" transform="translate(-0.012 24.348)"/>
+      </g>
+    </g>
+  </g>
+</svg>

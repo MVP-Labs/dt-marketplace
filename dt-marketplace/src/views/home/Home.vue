@@ -71,11 +71,15 @@
 import { getDtList } from "../../api/index";
 
 const images = [
-  "https://streamr-public.s3.amazonaws.com/product-images/i6kPwX43SVCHn4suXM1GJw3QzcxmTQQ-Oz_B4lqd3cAg.png",
-  "https://streamr-public.s3.amazonaws.com/product-images/u5Kx9nEcRR6whI3NLjo0MAQnZyn3_fRzy6WIp9ZA73dA.png",
-  "https://streamr-public.s3.amazonaws.com/product-images/Ir_tSV2SRtGLXdO1TnCwHQW6Y2ZM9gSa-1FYB4zWgBXg.jpg",
-  "https://streamr-public.s3.amazonaws.com/product-images/lYdrpZamTTiy_emLw93viwFxM6_nLkQwGokzsObLRoBA.png",
-  "https://streamr-public.s3.amazonaws.com/product-images/UmGwaEAyQtqnEpmncigp1gHWfjZMTDQoiS7M6f0qxAvg.png",
+  require("./images/1.jpeg"),
+  require("./images/2.jpeg"),
+  require("./images/3.jpeg"),
+  require("./images/4.jpeg"),
+  require("./images/5.png"),
+  require("./images/6.jpeg"),
+  require("./images/7.jpeg"),
+  require("./images/8.jpeg"),
+  require("./images/9.png"),
 ];
 
 export default {
@@ -92,7 +96,7 @@ export default {
       const res = await getDtList();
 
       this.list = res.dt_list.map((item, index) => {
-        item.fig = images[index % 5];
+        item.fig = images[index % 8];
         return item;
       });
 

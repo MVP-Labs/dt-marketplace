@@ -227,7 +227,8 @@ export default {
   padding: 8px 20px;
 }
 
-@media screen and (max-width: 1200px) {
+
+@media screen and (max-width: 1280px) {
   .home {
     .content-wrapper {
       .filters-bar {

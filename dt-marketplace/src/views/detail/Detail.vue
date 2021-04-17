@@ -44,8 +44,11 @@
           </a-table>
         </div>
 
-        <div class="detail-tree">
-          <Chart style="height: 540px" :option="option" />
+        <div class="detail-tree" v-if="this.option.series[0].data.length != 0">
+          <div class="tree-top">Data Union</div>
+          <div class="tree-bottom">
+            <Chart style="height: 540px" :option="option" />
+          </div>
         </div>
       </div>
     </div>
@@ -198,7 +201,15 @@ export default {
           trigger: "item",
           triggerOn: "mousemove",
           formatter(params) {
-            return params.data.value;
+            let str = "";
+            if (typeof params.data.values == "string") {
+              return "dt:" + params.data.values;
+            } else {
+              for (var key in params.data.values) {
+                str += key + ":" + params.data.values[key] + "<br />";
+              }
+              return str;
+            }
           },
         },
         series: [
@@ -212,8 +223,9 @@ export default {
             bottom: "1%",
             right: "20%",
             itemStyle: {
-              color: "#fff",
+              color: "#21325b",
               borderColor: "#21325b",
+
               borderWidth: 2,
             },
 
@@ -233,13 +245,17 @@ export default {
                 verticalAlign: "middle",
                 align: "left",
               },
+              itemStyle: {
+                color: "#fff",
+                borderColor: "#e23a3a",
+              },
             },
 
             emphasis: {
               // focus: "descendant",
             },
 
-            expandAndCollapse: false,
+            expandAndCollapse: true,
             animationDuration: 550,
             animationDurationUpdate: 750,
           },
@@ -271,7 +287,7 @@ export default {
         item.op = item.op || "N/A";
         return item;
       });
-      this.union_data = res.union_data;
+      this.option.series[0].data = res.union_data ? [res.union_data] : [];
     },
   },
 };
@@ -375,6 +391,18 @@ export default {
         border-bottom: none;
       }
     }
+  }
+  .tree-top {
+    height: 53px;
+    line-height: 53px;
+    background: #efefef;
+    margin-top: 40px;
+    padding-left: 40px;
+    border-bottom: 1px solid #efefef;
+  }
+  .tree-bottom {
+    background: #f8f8f8;
+    border-bottom: none;
   }
 }
 </style>

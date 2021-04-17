@@ -4,12 +4,7 @@
       <div class="title">
         A marketplace for trusted data and computing services
       </div>
-      <a-input-search
-        style="width: 440px"
-        placeholder="Search the marketplace for"
-        enter-button="Search"
-        size="large"
-      />
+      <a-input-search style="width: 440px" placeholder="Search the marketplace for" enter-button="Search" size="large" />
     </div>
 
     <div class="content-wrapper">
@@ -17,7 +12,8 @@
         <div class="bar-content">
           <a-dropdown>
             <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
-              All products <a-icon type="down" />
+              All products
+              <a-icon type="down" />
             </a>
             <a-menu slot="overlay">
               <a-menu-item key="All products">All Products</a-menu-item>
@@ -28,7 +24,8 @@
 
           <a-dropdown>
             <a class="ant-dropdown-link" @click="(e) => e.preventDefault()">
-              Category <a-icon type="down" />
+              Category
+              <a-icon type="down" />
             </a>
             <a-menu slot="overlay">
               <a-menu-item key="Account">Dataset</a-menu-item>
@@ -40,13 +37,7 @@
 
       <a-spin :spinning="loading" size="large">
         <div class="card-list">
-          <a-card
-            v-for="item in list"
-            :key="item.dt"
-            class="card-item"
-            :bordered="false"
-            @click="$router.push(`/detail/${item.dt}`)"
-          >
+          <a-card v-for="item in list" :key="item.dt" class="card-item" :bordered="false" @click="$router.push(`/detail/${item.dt}`)">
             <div class="img-wrapper">
               <div class="dot" v-if="item.union_or_not">Data Union</div>
               <img :src="item.fig" />
@@ -84,14 +75,14 @@ const images = [
 
 export default {
   name: "home",
-  data() {
+  data () {
     return {
       loading: true,
       list: [],
     };
   },
   methods: {
-    async getDtList() {
+    async getDtList () {
       this.loading = true;
       const res = await getDtList();
 
@@ -103,7 +94,7 @@ export default {
       this.loading = false;
     },
   },
-  async mounted() {
+  async mounted () {
     this.getDtList();
   },
 };
@@ -226,7 +217,6 @@ export default {
   font-size: 16px;
   padding: 8px 20px;
 }
-
 
 @media screen and (max-width: 1280px) {
   .home {

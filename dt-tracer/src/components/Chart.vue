@@ -11,41 +11,40 @@ export default {
   props: {
     option: {
       type: Object,
-      default: () => { },
+      default: () => {},
     },
   },
   watch: {
     option: {
-      handler (newValue) {
-        console.log("handler -> newValue", newValue)
+      handler(newValue) {
+        console.log("handler -> newValue", newValue);
         this.renderChart(newValue);
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
-  created () {
+  created() {
     this.resize = debounce(this.resize, 300);
   },
-  mounted () {
+  mounted() {
     this.renderChart();
     addEventListener(this.$refs.chartDom, this.resize);
   },
-  beforeDestroy () {
+  beforeDestroy() {
     removeEventListener(this.$refs.chartDom, this.resize);
     this.chart.dispose();
     this.chart = null;
   },
   methods: {
-    resize () {
+    resize() {
       console.log("resize");
       this.chart.resize();
     },
-    renderChart () {
+    renderChart() {
       // 基于准备好的dom，初始化echarts实例
       this.chart = echarts.init(this.$refs.chartDom);
       this.chart.setOption(this.option);
     },
-
   },
 };
 </script>

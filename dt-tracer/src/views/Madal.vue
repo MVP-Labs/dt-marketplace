@@ -5,7 +5,7 @@
     title=""
     on-ok="handleOk"
     :footer="null"
-    :width="840"
+    :width="900"
     :height="540"
     :centered="true"
   >
@@ -124,8 +124,18 @@ export default {
       },
     };
   },
+  watch: {
+    lifecycle: {
+      handler(newValue) {
+        console.log("handler -> newValue", newValue);
+        this.option.series[0].data = [newValue];
+      },
+      deep: true,
+    },
+  },
   mounted() {
     this.$nextTick(() => {
+      console.log(this.lifecycle);
       this.option.series[0].data = [this.lifecycle];
     });
   },

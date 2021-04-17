@@ -62,32 +62,32 @@
         </div>
       </div>
     </div>
-
-    <div class="home-block">
-      <div class="has-data" v-if="list.length">
-        <div class="block-title">
-          <div class="left text-hidden">{{ result }}</div>
-          <div class="right">
-            <a-button color="rgba(119,131,143,.1)" @click="viewPath">
-              View Path
-            </a-button>
+    <a-spin :spinning="loading" size="large">
+      <div class="home-block">
+        <div class="has-data" v-if="list.length">
+          <div class="block-title">
+            <div class="left text-hidden">{{ result }}</div>
+            <div class="right">
+              <a-button color="rgba(119,131,143,.1)" @click="viewPath">
+                View Path
+              </a-button>
+            </div>
+          </div>
+          <div class="block-item" v-for="(item, index) in list" :key="index">
+            <div class="item">
+              <div class="circle">DT</div>
+            </div>
+            <div class="item">job {{ item.job_id }}</div>
+            <div class="item">solver{{ item.solver }}</div>
+            <div class="item">task {{ item.task_id }}</div>
+            <div class="item">demander {{ item.demander }}</div>
+            <div class="item">{{ item.task_name }}</div>
+            <div class="item">{{ item.task_desc }}</div>
           </div>
         </div>
-        <div class="block-item" v-for="(item, index) in list" :key="index">
-          <div class="item">
-            <div class="circle">DT</div>
-          </div>
-          <div class="item">job {{ item.job_id }}</div>
-          <div class="item">solver{{ item.solver }}</div>
-          <div class="item">task {{ item.task_id }}</div>
-          <div class="item">demander {{ item.demander }}</div>
-          <div class="item">{{ item.task_name }}</div>
-          <div class="item">{{ item.task_desc }}</div>
-        </div>
+        <div class="no-data" v-else>暂无数据</div>
       </div>
-      <div class="no-data" v-else>暂无数据</div>
-    </div>
-
+    </a-spin>
     <div class="home-footer">
       <div class="footer-left">
         <img
@@ -142,7 +142,7 @@ export default {
   },
   data() {
     return {
-      // fui
+      loading: false,
       // tree展示
       madalShow: false,
       // 状态
@@ -268,10 +268,11 @@ export default {
     this._getStatInfo();
   },
   methods: {
-    // hui
     // 搜索数据 val
     async _traceByDt(val) {
+      this.loading = true;
       let { job_list, lifecycle } = await traceByDt({ dt: val });
+      this.loading = false;
       if (job_list) {
         this.list = job_list;
         this.lifecycle = lifecycle;

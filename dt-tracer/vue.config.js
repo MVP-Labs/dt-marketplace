@@ -29,16 +29,4 @@ module.exports = {
       ],
     },
   },
-  devServer: {
-    // p`roxy: {
-    //   "/api": {
-    //     target: "http://128.14.226.29:3000",
-    //     ws: true,
-    //     changOrigin: true
-    //     // pathRewrite: {
-    //     //   "/sys/v1/": "/sys/v1/"
-    //     // }
-    //   }
-    // }`
-  },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div ref="chartDom"></div>
+  <div ref="chartDom" id="chart"></div>
 </template>
 
 <script>
@@ -16,8 +16,9 @@ export default {
   },
   watch: {
     option: {
-      handler(val) {
-        this.chart.setOption(val);
+      handler(newValue) {
+        console.log("handler -> newValue", newValue);
+        this.renderChart(newValue);
       },
       deep: true,
     },
@@ -48,4 +49,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#chart {
+  height: 540px;
+}
+</style>

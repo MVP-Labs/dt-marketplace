@@ -1,10 +1,11 @@
 <template>
   <a-modal
     v-model="show"
+    class="modal-tree"
     title=""
     on-ok="handleOk"
     :footer="null"
-    :width="840"
+    :width="900"
     :height="540"
     :centered="true"
   >
@@ -15,114 +16,77 @@
 <script>
 import Chart from "../components/Chart";
 
-const data = {
-  name: "",
-  value: "owner: user1 <br/> issuer: org1",
-  children: [
-    {
-      name: "",
-      value: "aggregator: org2 <br /> service: leaf_sid0",
-      children: [
-        {
-          name: "",
-          value: "aggregator: org3 <br /> service: union_sid0",
-          children: [
-            {
-              name: "",
-              value: "job: 3 <br /> task: 1 <br /> demander: org",
-              itemStyle: {
-                color: "#21325b",
-              },
-            },
-            {
-              name: "",
-              value: "job: 4 <br /> task: 1 <br /> demander: org7",
-              itemStyle: {
-                color: "#21325b",
-              },
-            },
-            {
-              name: "",
-              value: "job: 5 <br /> task: 2 <br /> demander: org7",
-              itemStyle: {
-                color: "#21325b",
-              },
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "",
-      value: "aggregator: org4 <br /> service: leaf_sid1",
-      children: [
-        {
-          name: "",
-          value: "aggregator: org5 <br /> service: union_sid0",
-          children: [
-            {
-              name: "",
-              value: "job: 8 <br /> task: 4 <br /> demander: org8",
-              itemStyle: {
-                color: "#21325b",
-              },
-            },
-            {
-              name: "",
-              value: "job: 10 <br /> task: 4 <br /> demander: org8",
-              itemStyle: {
-                color: "#21325b",
-              },
-            },
-          ],
-        },
-        {
-          name: "",
-          value: "job: 12 <br /> task: 6 <br /> demander: org9",
-          itemStyle: {
-            color: "#21325b",
-          },
-        },
-      ],
-    },
-    {
-      name: "",
-      value: "job: 14, task: 7 <br /> demander: org10",
-      itemStyle: {
-        color: "#21325b",
-      },
-    },
-  ],
-};
-
 export default {
   components: {
     Chart,
+  },
+  props: {
+    lifecycle: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+    // show: {
+    //   type: Boolean,
+    //   default: true
+    // }
   },
   data() {
     return {
       show: false,
       option: {
+        backgroundColor: "#f8f8f8",
         tooltip: {
           trigger: "item",
           triggerOn: "mousemove",
           formatter(params) {
-            return params.data.value;
+            console.log("formatter -> params", params);
+            let str = "";
+            for (var key in params.data.values) {
+              console.log(key);
+              str += key + ":" + params.data.values[key] + "<br />";
+            }
+            return str;
           },
         },
         series: [
           {
             type: "tree",
-
-            data: [data],
+            data: [],
+            // data: [{
+            //   name: "",
+            //   value: "aggregator: org2 <br /> service: leaf_sid0",
+            //   children: [
+            //     {
+            //       name: "",
+            //       value: "aggregator: org3 <br /> service: union_sid0",
+            //       children: [
+            //         {
+            //           name: "",
+            //           value: "job: 3 <br /> task: 1 <br /> demander: org",
+            //           itemStyle: {
+            //             color: "#21325b",
+            //           },
+            //         },
+            //         {
+            //           name: "",
+            //           value: "job: 4 <br /> task: 1 <br /> demander: org7",
+            //           itemStyle: {
+            //             color: "#21325b",
+            //           },
+            //         },]
+            //     }
+            //   ],
+            // }],
 
             top: "1%",
             left: "7%",
             bottom: "1%",
             right: "20%",
             itemStyle: {
+              borderColor: "#e23a3a",
               color: "#fff",
-              borderColor: "#21325b",
               borderWidth: 2,
             },
 
@@ -142,19 +106,38 @@ export default {
                 verticalAlign: "middle",
                 align: "left",
               },
+              itemStyle: {
+                color: "#21325b",
+                borderColor: "#21325b",
+              },
             },
 
             emphasis: {
               // focus: "descendant",
             },
 
-            expandAndCollapse: false,
+            expandAndCollapse: true,
             animationDuration: 550,
             animationDurationUpdate: 750,
           },
         ],
       },
     };
+  },
+  watch: {
+    lifecycle: {
+      handler(newValue) {
+        console.log("handler -> newValue", newValue);
+        this.option.series[0].data = [newValue];
+      },
+      deep: true,
+    },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      console.log(this.lifecycle);
+      this.option.series[0].data = [this.lifecycle];
+    });
   },
   methods: {
     open() {
@@ -164,4 +147,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.modal-tree {
+  background-color: #f8f8f8;
+  ::v-deep {
+    .ant-modal-body {
+      background-color: #f8f8f8;
+      padding: 0;
+    }
+  }
+}
+</style>

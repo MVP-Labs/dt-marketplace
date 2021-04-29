@@ -73,7 +73,7 @@
               </a-button>
             </div>
           </div>
-          <div class="block-item">
+          <div class="block-item table-header">
             <div class="item">DT</div>
             <div class="item">job</div>
             <div class="item">solver</div>
@@ -94,7 +94,7 @@
             <div class="item">{{ item.task_desc }}</div>
           </div>
         </div>
-        <div class="no-data" v-if="!list.length && noDataShow">暂无数据</div>
+        <div class="no-data" v-if="!list.length && noDataShow">No Data</div>
       </div>
     </a-spin>
     <div class="home-footer">
@@ -151,7 +151,7 @@
     },
     data() {
       return {
-        noDataShow: false,
+        noDataShow: true,
         loading: false,
         // tree展示
         madalShow: false,
@@ -305,6 +305,7 @@
       // 搜索数据 val
       async _traceByDt(val) {
         this.loading = true
+        this.noDataShow = false
         let { job_list, lifecycle } = await traceByDt({ dt: val })
         this.loading = false
         this.noDataShow = true
@@ -495,6 +496,11 @@
             border-radius: 50%;
             font-size: 15px;
           }
+        }
+      }
+      .table-header {
+        .item {
+          font-weight: 600;
         }
       }
       .no-data {

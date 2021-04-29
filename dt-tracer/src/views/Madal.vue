@@ -44,14 +44,16 @@
               // console.log("formatter -> params", params.dataIndex);
               let str = ''
               let obj = params.data.values
-              if (params.dataIndex != 1) {
-                let flat = Object.prototype.hasOwnProperty.call(obj, 'job_id')
-                if (flat) {
-                  str += 'job_id : ' + obj['job_id'] + '<br />'
-                  str += 'task_id : ' + obj['task_id'] + '<br />'
-                  str += 'demander : ' + obj['demander'] + '<br />'
-                } else {
-                  for (var key in obj) {
+
+              if (params.dataIndex == 1) return str
+              let flat = Object.prototype.hasOwnProperty.call(obj, 'job_id')
+              if (flat) {
+                str += 'job_id : ' + obj['job_id'] + '<br />'
+                str += 'task_id : ' + obj['task_id'] + '<br />'
+                str += 'demander : ' + obj['demander'] + '<br />'
+              } else {
+                for (var key in obj) {
+                  if (key != 'dt') {
                     str += key + ' : ' + obj[key] + '<br />'
                   }
                 }

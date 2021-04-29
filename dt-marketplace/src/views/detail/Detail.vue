@@ -203,17 +203,18 @@
             triggerOn: 'mousemove',
             formatter(params) {
               let str = ''
-              if (params.dataIndex != 1) {
-                if (typeof params.data.values == 'string') {
-                  return 'dt : ' + params.data.values
-                } else {
-                  for (var key in params.data.values) {
+
+              if (params.dataIndex == 1) return str
+              if (typeof params.data.values == 'string') {
+                return 'dt : ' + params.data.values
+              } else {
+                for (var key in params.data.values) {
+                  if (key != 'dt') {
                     str += key + ' : ' + params.data.values[key] + '<br />'
                   }
-                  return str
                 }
+                return str
               }
-              return str
             },
           },
           series: [

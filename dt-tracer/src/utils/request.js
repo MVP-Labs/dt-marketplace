@@ -6,7 +6,7 @@ let loadCount = 0 // 当前请求 loading 的数量
 
 const request = axios.create({
   timeout: 30000,
-  baseURL: 'http://128.14.226.29:3000',
+  baseURL: 'http://0.0.0.0:8000',
   _cache: false, // 接口缓存
   _loading: false, // 是否显示 loading
   _toast: true, // 报错后是否显示 toast

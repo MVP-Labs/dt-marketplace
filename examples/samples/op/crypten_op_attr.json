@@ -1,0 +1,11 @@
+{
+    "metadata": {
+        "main": {
+            "type": "Operation",
+            "name": "trust_op1",
+            "desc": "financial risk model built by Crypten"
+        }
+    },
+    "operation": "./samples/op/crypten_op.py",
+    "params": "./samples/op/crypten_params.json"
+}

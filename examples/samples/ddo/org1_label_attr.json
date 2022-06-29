@@ -1,0 +1,46 @@
+{
+    "metadata": {
+        "main": {
+            "type": "Dataset",
+            "name": "bank A financial default labels",
+            "desc": "50000+ user default label, 0 or 1"
+        }
+    },
+    "services": [
+        {
+            "index": "sid0_for_bank_A",
+            "endpoint": "127.0.0.1:8091",
+            "descriptor": {
+                "template": "dt:ownership:213ab774eb525879d67516f199c36ea9729c48da4a5bd5cfcee621166b217155",
+                "constraint": {
+                    "self_rank": 0,
+                    "world_size": 2,
+                    "master_ip": {},
+                    "master_port": {},
+                    "inputs": {
+                        "0": {},
+                        "1": {},
+                        "2": "./inputs/org1_label.pth"
+                    },
+                    "model_args": {
+                        "layers": {},
+                        "learning_rate": {},
+                        "batch_size": {},
+                        "num_epochs": {}
+                    },
+                    "outputs": {
+                        "0": "./outputs/test.log"
+                    }
+                }
+            },
+            "attributes": {
+                "price": 10,
+                "shape": [
+                    50000,
+                    1
+                ],
+                "path": "./inputs/org1_label.pth"
+            }
+        }
+    ]
+}

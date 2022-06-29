@@ -1,0 +1,96 @@
+{
+    "metadata": {
+        "main": {
+            "type": "Algorithm",
+            "name": "financial risk algorithm",
+            "desc": "run the two-party joint model"
+        }
+    },
+    "child_dts": [
+        "dt:ownership:dbb4ef9b7ac8472dba660cf31f28b1d9507d531b657842d387c6cb57a4e776c3",
+        "dt:ownership:89880aa2b0e74d15b5461848ef1c53c3b6ed7e6439ac4d088a8bafaa1118d2a8",
+        "dt:ownership:e4eccb2613714a77bc200ac08f2c8cd769562892e6194a6993f7c6cdfb7b6f00"
+    ],
+    "services": [
+        {
+            "index" : "sid0_for_3rd",
+            "endpoint": {},
+            "attributes": {
+                "workflow_name": "distributed Crypten"
+            },
+            "descriptor": {
+                "workflow": {
+                    "dt:ownership:dbb4ef9b7ac8472dba660cf31f28b1d9507d531b657842d387c6cb57a4e776c3": {
+                        "service": "sid0_for_bank_A",
+                        "constraint": {
+                            "self_rank": 0,
+                            "world_size": 2,
+                            "master_ip": "127.0.0.1",
+                            "master_port": 8002,
+                            "inputs": {
+                                "0": "./inputs/org1_feature.pth",
+                                "1": "./inputs/org2_feature.pth",
+                                "2": "./inputs/org1_label.pth"
+                            },
+                            "model_args": {
+                                "layers": [36, 2],
+                                "learning_rate": 0.001,
+                                "batch_size": 100,
+                                "num_epochs": 5
+                            },
+                            "outputs": {
+                                "0": "./outputs/test.log"
+                            }
+                        }
+                    },
+                    "dt:ownership:89880aa2b0e74d15b5461848ef1c53c3b6ed7e6439ac4d088a8bafaa1118d2a8": {
+                        "service": "sid0_for_bank_B",
+                        "constraint": {
+                            "self_rank": 1,
+                            "world_size": 2,
+                            "master_ip": "127.0.0.1",
+                            "master_port": 8002,
+                            "inputs": {
+                                "0": "./inputs/org1_feature.pth",
+                                "1": "./inputs/org2_feature.pth",
+                                "2": "./inputs/org1_label.pth"
+                            },
+                            "model_args": {
+                                "layers": [36, 2],
+                                "learning_rate": 0.001,
+                                "batch_size": 100,
+                                "num_epochs": 5
+                            },
+                            "outputs": {
+                                "0": "./outputs/test.log"
+                            }
+                        }
+                    },
+                    "dt:ownership:e4eccb2613714a77bc200ac08f2c8cd769562892e6194a6993f7c6cdfb7b6f00": {
+                        "service": "sid0_for_bank_A",
+                        "constraint": {
+                            "self_rank": 0,
+                            "world_size": 2,
+                            "master_ip": "127.0.0.1",
+                            "master_port": 8002,
+                            "inputs": {
+                                "0": "./inputs/org1_feature.pth",
+                                "1": "./inputs/org2_feature.pth",
+                                "2": "./inputs/org1_label.pth"
+                            },
+                            "model_args": {
+                                "layers": [36, 2],
+                                "learning_rate": 0.001,
+                                "batch_size": 100,
+                                "num_epochs": 5
+                            },
+                            "outputs": {
+                                "0": "./outputs/test.log"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

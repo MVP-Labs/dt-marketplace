@@ -1,0 +1,20 @@
+{
+    "self_rank": {},
+    "world_size": 2,
+    "master_ip": {},
+    "master_port": {},
+    "inputs": {
+        "0": {},
+        "1": {},
+        "2": {}
+    },
+    "model_args": {
+        "layers": {},
+        "learning_rate": {},
+        "batch_size": {},
+        "num_epochs": {}
+    },
+    "outputs": {
+        "0": {}
+    }
+}

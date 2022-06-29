@@ -1,0 +1,46 @@
+{
+    "metadata": {
+        "main": {
+            "type": "Dataset",
+            "name": "bank B financial default data",
+            "desc": "50000+ user financial default datasets, each user has 42-dimension features"
+        }
+    },
+    "services": [
+        {
+            "index": "sid0_for_bank_B",
+            "endpoint": "127.0.0.1:8092",
+            "descriptor": {
+                "template": "dt:ownership:213ab774eb525879d67516f199c36ea9729c48da4a5bd5cfcee621166b217155",
+                "constraint": {
+                    "self_rank": {},
+                    "world_size": 2,
+                    "master_ip": {},
+                    "master_port": {},
+                    "inputs": {
+                        "0": {},
+                        "1": {},
+                        "2": {}
+                    },
+                    "model_args": {
+                        "layers": {},
+                        "learning_rate": {},
+                        "batch_size": {},
+                        "num_epochs": {}
+                    },
+                    "outputs": {
+                        "0": {}
+                    }
+                }
+            },
+            "attributes": {
+                "price": 10,
+                "shape": [
+                    50000,
+                    42
+                ],
+                "path": "./inputs/org2_feature.pth"
+            }
+        }
+    ]
+}
